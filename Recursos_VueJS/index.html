@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Componente Vue JS</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+
+    <div id="app">
+
+      <comp-titulo v-bind:titulo="tituloAPP"></comp-titulo>
+
+      <input type="text" v-model="tituloAPP">
+
+      <comp-tabela v-bind:titulos="['Nome v-bind', 'E-mail v-bind', 'Telefone v-bind', 'Valor v-bind']" v-bind:lista="pessoas"></comp-tabela>
+
+
+      <p v-once>{{ tituloAPP }}</p>
+
+      <p>{{ html }}</p>
+
+      <p v-html="html"></p>
+
+      <p>{{ ('R$'+(23.983452342).toFixed(2)).replace('.', ',') }}</p>
+
+      <p>{{ 23.983452342 | FormatarMoeda }}</p>
+
+      <p>Total através de methods: {{ totalValorMetodo() }} </p>
+      <p>contaMetodo: {{ contaMetodo }} </p>
+
+      <p>Total através de computeds methods: {{ totalValorCalculado }}</p>
+      <p>contaCalculada: {{ contaCalculada }} </p>
+
+      <p>
+        <input type="text" v-model="nome">
+      </p>
+
+      <p>Watch nome: {{ contaAlteracoes}}</p>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+      Vue.component('comp-titulo', {
+        props: ['titulo'],
+        template: '<h1>{{ titulo }}</h1>'
+      });
+
+      Vue.component('comp-tabela', {
+        props: ['titulos', 'lista'],
+        template:'<table>'+
+                '<thead>'+
+                  '<th v-for="titulo in titulos">{{ titulo }}</th>'+
+                '</thead>'+
+                '<tbody>'+
+                  '<tr v-for="objeto in lista">'+
+                    '<td v-for="atributo in objeto">{{ atributo }}</td>'+
+                  '</tr>'+
+                '</tbody>'+
+              '</table>'
+
+      });
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          tituloAPP: 'TituloAPP Padrão',
+          pessoas: [
+            {'nome': 'Nome 1', 'email': 'email 1', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 2', 'email': 'email 2', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 3', 'email': 'email 3', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 4', 'email': 'email 4', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 5', 'email': 'email 5', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 6', 'email': 'email 5', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 7', 'email': 'email 6', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 8', 'email': 'email 7', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+            {'nome': 'Nome 9', 'email': 'email 8', 'telefone': '(88) 9 0000-99999', 'valor': 1},
+          ],
+          html: '<a href="#">Usando a diretiva v-html</a>',
+          contaMetodo: 0,
+          contaCalculada: 0,
+          nome: '',
+          contaAlteracoes: 0
+        },
+        filters: {
+          FormatarMoeda:  function(valor){
+            return ('R$' + (valor).toFixed(2)).replace('.', ',');
+          }
+        },
+        methods: {
+          totalValorMetodo: function() {
+            //this.contaMetodo++;
+            var total = 0;
+            for( pessoa of this.pessoas ) {
+              total += pessoa.valor;
+            }
+            return total;
+          }
+        },
+        computed: {
+          totalValorCalculado: function() {
+            this.contaCalculada++;
+            var total = 0;
+            for( pessoa of this.pessoas ) {
+              total += pessoa.valor;
+            }
+            return total;
+          }
+        },
+        watch: {
+          nome: function(valor) {
+            this.contaAlteracoes++;
+            this.nome = valor.toUpperCase();
+          }
+        }
+
+
+      });
+    </script>
+
+  </body>
+</html>

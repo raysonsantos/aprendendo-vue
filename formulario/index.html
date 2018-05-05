@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Componente Vue JS</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+
+    <div id="app">
+
+      <comp-titulo titulo="Formulários"></comp-titulo>
+
+      <p>Texto: {{ texto }}</p>
+      <p>
+        <input type="text" v-model="texto">
+      </p>
+
+      <p>Textarea: {{ textarea }}</p>
+      <p style="white-space: pre-line">Textarea: {{ textarea }}</p>
+      <p>
+        <textarea v-model="textarea" rows="8" cols="80"></textarea>
+      </p>
+
+      <p>Checkbox: {{ termos }}</p>
+      <input type="checkbox" v-model="termos" id="aceitaTermos">
+      <label for="aceitaTermos">Aceita Termos</label>
+
+      <p>Multiplos Checkboxes: {{ notificacoes }}</p>
+      <p>
+        <input type="checkbox" value="email" v-model="notificacoes" id="receberEmail">
+        <label for="receberEmail">Receber E-mail</label>
+
+        <input type="checkbox" value="sms" v-model="notificacoes" id="receberSMS">
+        <label for="receberSMS">Receber SMS</label>
+
+        <input type="checkbox" value="tel" v-model="notificacoes" id="receberTel">
+        <label for="receberTel">Receber Ligação</label>
+      </p>
+
+      <p>Radio: {{ sexo }}</p>
+
+      <p>
+        <input type="radio" value="F" v-model="sexo" id="feminino">
+        <label for="feminino">Feminino</label>
+        <input type="radio" value="M" v-model="sexo" id="masculino">
+        <label for="masculino">Masculino</label>
+      </p>
+
+      <p>Select {{ ano }}</p>
+      <p>
+        <select v-model="ano">
+          <option disabled>Selecione o ano</option>
+          <option value="2018">Ano 2018</option>
+          <option value="2019">Ano 2019</option>
+          <option value="2020">Ano 2020</option>
+          <option value="2021">Ano 2021</option>
+        </select>
+      </p>
+
+      <p>Mutiples Selects {{ cores }}</p>
+      <p>
+        <select multiple v-model="cores">
+          <option disabled>Selecione as cores</option>
+          <option>Azul</option>
+          <option>Amarelo</option>
+          <option>Verde</option>
+          <option>Vermelho</option>
+        </select>
+      </p>
+
+      <p>Lazy: {{busca}}</p>
+      <p>
+        <input type="text" v-model.lazy="busca">
+      </p>
+
+      <p>Idade: {{ idade }} - Tipo: {{ typeof idade }}</p>
+      <p>
+        <input type="number" v-model.number="idade">
+      </p>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+      Vue.component('comp-titulo', {
+        props: ['titulo'],
+        template: '<h1>{{ titulo }}</h1>'
+      });
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          texto: '',
+          textarea: '',
+          termos: false,
+          notificacoes: [],
+          sexo: 'F',
+          ano: null,
+          cores: [],
+          busca:'',
+          idade: null
+        },
+      });
+
+    </script>
+
+  </body>
+</html>

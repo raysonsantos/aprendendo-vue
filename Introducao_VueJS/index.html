@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Introdução ao Vue JS</title>
+    <script src="https://unpkg.com/vue"></script>
+  </head>
+  <body>
+
+    <div id="app">
+      {{ msg }}
+      <p v-bind:title="titulo">Título padrão</p>
+      <p v-if="mostra">Diretiva v-if</p>
+      <p v-for="noticia in noticias">{{ noticia.descricao }}</p>
+
+      <button v-if="!clique" v-on:click="usuarioClicou">Salva</button>
+      <button v-if="clique" v-on:click="usuarioClicou">Aguarde...</button>
+
+      <p></p>
+      <input type="text" v-model="pessoa.nome">
+      <p>Nome: {{ pessoa.nome }}</p>
+    </div>
+
+    <script type="text/javascript">
+
+      var app = new Vue({
+        el: '#app',
+        data: {
+          msg: 'Olá Vue JS',
+          titulo: 'Título com a diretiva v-bind',
+          mostra: true,
+          noticias: [
+            {descricao: 'Notícia 1'},
+            {descricao: 'Notícia 2'},
+            {descricao: 'Notícia 3'},
+            {descricao: 'Notícia 4'},
+            {descricao: 'Notícia 5'},
+            {descricao: 'Notícia 6'},
+          ],
+          clique: false,
+          pessoa: {
+            nome: ""
+          }
+        },
+        methods: {
+          usuarioClicou: function() {
+            this.clique = !this.clique;
+          }
+        }
+
+      });
+    </script>
+
+
+  </body>
+</html>
