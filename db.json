@@ -1,0 +1,14 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "titulo": "Suspense",
+      "filmes": [
+        {"id": 1, "titulo": "Assassin’s Creed", "imagem": "http://s2.glbimg.com/pfVanY0cz4ZMH37oHyvR_n49_48=/e.glbimg.com/og/ed/f/original/2018/01/24/guardians-of-the-galaxy.jpg?w=700"},
+        {"id": 2, "titulo": "Assassin’s Creed", "imagem": "https://img1.ibxk.com.br/2015/11/12/12134915138723.jpg?w=700"},
+        {"id": 3, "titulo": "Assassin’s Creed", "imagem": "https://img1.ibxk.com.br/2015/11/12/12134915138723.jpg?w=700"},
+        {"id": 4, "titulo": "Assassin’s Creed", "imagem": "https://img1.ibxk.com.br/2015/11/12/12134915138723.jpg?w=700"}
+      ]
+    }
+  ]
+}
